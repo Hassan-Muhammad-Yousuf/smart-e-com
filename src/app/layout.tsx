@@ -1,3 +1,4 @@
+import Header from "./components/Header";
 import type { Metadata } from "next";
 
 import "./css/globals.css";
@@ -16,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-bodyFont">{children}</body>
+      <body className="font-bodyFont w-full bg-main-bg text-darkText">
+        <Header/>
+        {children}
+        </body>
     </html>
   );
 }
