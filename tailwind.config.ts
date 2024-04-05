@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme");
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'main-bg': "url('/Bg.jpeg')",
+        "main-bg": "url('/Bg.jpeg')",
       },
       fontFamily: {
         bodyFont: ["Urbanist", ...defaultTheme.fontFamily.sans],
@@ -21,8 +21,8 @@ const config: Config = {
         darkText: "#242424",
         lightText: "#a5a5a5",
       },
+    },
   },
-},
   plugins: [],
 };
 export default config;
