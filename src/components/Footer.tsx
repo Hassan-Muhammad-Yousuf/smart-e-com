@@ -7,6 +7,9 @@ import {
 import payment from "@/images/payment.png";
 import Container from "./Container";
 import Logo from "./Logo";
+import Link from "next/link";
+import Image from "next/image";
+
 
 
  const Footer = () => {
@@ -44,18 +47,18 @@ import Logo from "./Logo";
                 </li>
                 <li className="flex flex-col">
                     <span className="text-slate hover:text-orange-600 
-                    cursor-pointer duration-200">From Music World</span>
-                    <span className="text-orange-600">Jan 31, 2025</span>
+                    cursor-pointer duration-200">Upcomming Outlet</span>
+                    <span className="text-orange-600">Comming Soon</span>
                 </li>
                 <li className="flex flex-col">
                     <span className="text-slate hover:text-orange-600 
-                    cursor-pointer duration-200">From Music World</span>
-                    <span className="text-orange-600">Jan 31, 2025</span>
+                    cursor-pointer duration-200">Winter Sale</span>
+                    <span className="text-orange-600">Nov 31, 2024</span>
                 </li>
                 <li className="flex flex-col">
                     <span className="text-slate hover:text-orange-600 
-                    cursor-pointer duration-200">From Music World</span>
-                    <span className="text-orange-600">Jan 31, 2025</span>
+                    cursor-pointer duration-200">Kids Corner</span>
+                    <span className="text-orange-600">Jul 31, 2024</span>
                 </li>
                </ul>
             </div>
@@ -63,27 +66,45 @@ import Logo from "./Logo";
                 <p className="text-lg"> Links </p>
                 <ul className="text-base font-medium mt-2 flex 
                 flex-col gap-y-2">
-                    <li className="hover:text-orange-50 cursor-pointer
+                <Link href={"/"}>
+                <li className="hover:text-orange-500 cursor-pointer
                     duration-200">
-                        Home
-                    </li>
-                    <li className="hover:text-orange-50 cursor-pointer
+                    Home
+                </li>
+                </Link>
+                <Link href={"/cart"}>
+                <li className="hover:text-orange-500 cursor-pointer
                     duration-200">
-                        Cart
-                    </li>
-                    <li className="hover:text-orange-50 cursor-pointer
+                    Cart
+                </li>
+                </Link>  
+                <Link href={"/about"}>
+                <li className="hover:text-orange-500 cursor-pointer
                     duration-200">
                         About
-                    </li>
-                    <li className="hover:text-orange-50 cursor-pointer
+                </li>
+                </Link>  
+                <Link href={"/newsletter"}>
+                <li className="hover:text-orange-500 cursor-pointer
                     duration-200">
                         Newsletter
-                    </li>
-                    <li className="hover:text-orange-50 cursor-pointer
+                </li>
+                </Link>
+                <Link href={"/contact"}>
+                <li className="hover:text-orange-500 cursor-pointer
                     duration-200">
                         Contact
-                    </li>
+                </li>
+                </Link>
                 </ul>
+            </div>
+            <div>
+                <p className="text-lg mb-2"> Pay with your Trust</p>
+                <Image 
+                src={payment}
+                alt="payment banner image"
+                className="w-full h-10 object-cover"
+                />
             </div>
         </Container>
         </div>
