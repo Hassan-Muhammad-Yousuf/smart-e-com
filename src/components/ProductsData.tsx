@@ -4,6 +4,7 @@ import { ItemProps } from "../../type";
 import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
 import { IoIosStar } from "react-icons/io";
+import Link from "next/link";
 
 const ProductData = ({ item } : ItemProps) => {
     const startArray = Array.from({ length: item?.rating }, (_, index) => (
@@ -14,6 +15,7 @@ const ProductData = ({ item } : ItemProps) => {
 
     return( <div className="w-full rounded-lg overflow-hidden">
         <div>
+            <Link href={{pathname:'/product', query:{_id:item?._id}}}>
             <div className="w-full h-96 group overflow-hidden relative">
             <Image src={item?.image} 
             alt="product image" 
@@ -32,6 +34,7 @@ const ProductData = ({ item } : ItemProps) => {
                 )
             }
             </div>
+            </Link>
             <div className=" border-[1px] border-slate-300 border-t-0
             px-2 py-4 flex flex-col gap-y-2 bg-white rounded-b-lg">
                 <p>{item?.title}</p>
