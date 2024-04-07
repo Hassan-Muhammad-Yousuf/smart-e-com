@@ -24,3 +24,13 @@ export interface Products {
       };
     };
   }
+
+  export interface StateProps {
+    shopping: {
+      productData: [];
+      userInfo: {};
+      orderData: {
+        order: Products[];
+      };
+    };
+  }

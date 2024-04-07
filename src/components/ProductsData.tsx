@@ -1,14 +1,19 @@
-"use Client";
+"use client";
 import { calculatePercentage } from "@/helpers";
 import { ItemProps } from "../../type";
 import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
 import { IoIosStar } from "react-icons/io";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/shoppingSlice";
+import toast, {Toaster} from "react-hot-toast";
 
-const ProductData = ({ item } : ItemProps) => {
+const ProductsData = ({ item } : ItemProps) => {
+    const dispatch = useDispatch();
     const startArray = Array.from({ length: item?.rating }, (_, index) => (
-        <span key={index} className="text-yellow-400">
+    
+      <span key={index} className="text-yellow-400">
           <IoIosStar />
         </span>
     ));
@@ -55,7 +60,13 @@ const ProductData = ({ item } : ItemProps) => {
                 </div>
                 <div className="flex items-center justify-between">
                     {/* Add to cart */}
-                    <button className="bg-orange-600 px-4 py-2 
+                    <button 
+                    onClick={() => dispatch(addToCart(item)) &&
+                        toast.success(
+                            `${item?.title.substring(0, 15)} added sucessfully!`
+                        )
+                    } 
+                    className="bg-orange-600 px-4 py-2 
                     text-sm tracking-wide rounded-full 
                     text-slate-100 hover:bg-orange-800 
                     hover:text-white duration-200">
@@ -67,8 +78,9 @@ const ProductData = ({ item } : ItemProps) => {
                 </div>
             </div>
         </div>
+        <Toaster />
     </div>
     );
 };
 
-export default ProductData;
+export default ProductsData;
