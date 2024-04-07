@@ -6,6 +6,7 @@ import FormattedPrice from "./FormattedPrice";
 import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/react";
+import { resetCart, saveOrder } from "@/redux/shoppingSlice";
 
 const PaymentForm = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const stripePromise = loadStripe(
 );
 const {data: session} = useSession();
 const handleCheckout=async()=>{
+  const stripe = await stripePromise;
    const response = await fetch("http://localhost:3000/api/checkout",{
     method: "POST",
     headers: {"Content-Type": "application/json"},
@@ -39,8 +41,11 @@ const handleCheckout=async()=>{
    const data = await response.json();
 
    if (response.ok) {
-    console.log(data);
-    
+    await dispatch(saveOrder({ order: productData, id: data.id}));
+    stripe?.redirectToCheckout({ sessionId: data.id });
+    dispatch(resetCart());
+   } else {
+    throw new Error("Unsuccessfull in Proceeding Stripe Payments");
    }
 };
 //============== Stripe Implementation Ends here =============
