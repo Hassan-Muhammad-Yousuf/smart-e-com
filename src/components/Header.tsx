@@ -7,15 +7,30 @@ import { FiSearch, FiLogOut } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Products, StateProps } from "../../type";
 import FormattedPrice from "./FormattedPrice";
 import Link from "next/link";
+import { addUser, deleteUser } from "@/redux/shoppingSlice";
 
 
 const Header = () => {
+  const dispatch = useDispatch();
   const {data:session} = useSession();
   const {productData} = useSelector((state: StateProps) => state.shopping);
+  
+  useEffect(()=> {
+    if(session){
+      dispatch(addUser ({
+        name:session?.user?.name,
+        email: session?.user?.email,
+        image: session?.user?.image,
+      }));
+    }else{
+      dispatch(deleteUser());
+    }
+  },[session,dispatch]);
+  
   const [totalAmt, setTotalAmt] = useState(0);
 
   useEffect(() =>{
@@ -24,8 +39,7 @@ const Header = () => {
       amt += item.price * item.quantity;
     });
     setTotalAmt(amt);
-    
-  },[productData])
+  },[productData]);
 
     return (
     <div className="bg-bodyColor h-20 top-0 sticky z-50">
