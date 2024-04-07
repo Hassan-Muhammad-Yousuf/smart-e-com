@@ -28,9 +28,21 @@ const stripePromise = loadStripe(
 );
 const {data: session} = useSession();
 const handleCheckout=async()=>{
-  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-  
-}
+   const response = await fetch("http://localhost:3000/api/checkout",{
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      items: productData,
+      email: session?.user?.email,
+    }),
+   });
+   const data = await response.json();
+
+   if (response.ok) {
+    console.log(data);
+    
+   }
+};
 //============== Stripe Implementation Ends here =============
 return (
   <div className="w-full bg-white p-4">
