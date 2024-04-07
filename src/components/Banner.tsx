@@ -50,7 +50,8 @@ const Banner = () => {
             <Image 
             src = {Banner1} 
             alt="Banner1" 
-            className="w-full h-full relative" />
+            className="w-full h-full relative"
+            priority />
         <BannerText title = "Women's Choice"/>
         </div>
         <div className="w-full h-full relative">
