@@ -12,13 +12,14 @@ import { Products, StateProps } from "../../type";
 import FormattedPrice from "./FormattedPrice";
 import Link from "next/link";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
+import { BsBookmarks } from "react-icons/bs";
 
 
 const Header = () => {
   const dispatch = useDispatch();
   const {data:session} = useSession();
   const {productData, orderData} = useSelector((state: StateProps) => state.shopping);
-   console.log(orderData);
+
    
   
   useEffect(()=> {
@@ -94,6 +95,18 @@ const Header = () => {
             className="rounded-full object-cover"
           />
         )}
+            {/* Order Button */}
+            
+            {orderData?.order?.length > 0 && session && (
+          <Link
+            href={"/order"}
+            className="headerDiv px-2 gap-x-1 cursor-pointer"
+          >
+            <BsBookmarks className="text-2xl" />
+            <p className="text-sm font-semibold">Orders</p>
+          </Link>
+        )}
+
             {/* Logout */}
             {session && (
               <div onClick={() => signOut()} 
